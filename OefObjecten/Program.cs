@@ -23,6 +23,33 @@ namespace OefObjecten
         }
     }
 
+    public class Artikel
+    {
+        public string Naam { get; set; }
+        public double EP { get; set; }
+        public int Aantal { get; set; }
+
+        public Artikel()
+        {
+
+        }
+
+        public Artikel(string artikelnaam, double eenheidsprijs, int aantal)
+        {
+            Naam = artikelnaam;
+            EP = eenheidsprijs;
+            Aantal = aantal;
+        }
+
+        public double Totaalprijs
+        {
+            get
+            {
+                return EP * Aantal;
+            }
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -46,6 +73,15 @@ namespace OefObjecten
             foreach (Persoon p in personen)
             {
                 Console.WriteLine(p.Naam + " is " + p.Leeftijd + " jaar oud.");
+            }
+            //////////////////////////////////////////////
+            List<Artikel> artikels = new List<Artikel>();
+            artikels.Add(new Artikel("tafel", 399.00, 1));
+            artikels.Add(new Artikel("stoel", 79.00, 4));
+
+            foreach (Artikel a in artikels)
+            {
+                Console.WriteLine(String.Format("{0} kost {1:c}/stuk. Men koopt  er {2} van aan en dus kost het in totaal {3:c}.", a.Naam, a.EP, a.Aantal, a.Totaalprijs));
             }
         }
     }
